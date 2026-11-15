@@ -1,5 +1,5 @@
 # [USTH] Fine-tune machine (usth), Ubuntu, CUDA GPU with >= 8 GB VRAM, Python venv with
-#       train/requirements.txt installed (MANUAL_SETUP.md step 2).
+#       requirements.txt installed (MANUAL_SETUP.md step 2).
 #
 # Physical setup before running:
 #   - Copy from the host into the same paths under /storage/student14/nvbach/BeagleBrain on usth: data/train.jsonl, data/eval.jsonl,
