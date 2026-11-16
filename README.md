@@ -37,10 +37,7 @@ huggingface-cli download --repo-type dataset thangvip/vietnamese-legal-qa --loca
 - Run app: `python app.py`
 
 ### 4. Benchmark
-
-`bench/results/laptop_default_20261116-152411`: laptop chip (x86_64), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
-
-`bench/results/BeagleBone_default_20261115-143102`: BeagleBone (armv7l), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
+`beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
 
 | Metric (max) | ARM Cortex-A8 | Intel Core i5-13420H |
 |---|---|---|
