@@ -52,7 +52,7 @@ def retrieve(conn, question, k=TOP_K):
 
 def open_db(path=DB):
     if not os.path.exists(path):
-        sys.exit(f"missing {path}, run data/build_index.py on the host and copy it here (MANUAL_SETUP.md step 16)")
+        sys.exit(f"missing {path}, run data/build_index.py")
     return sqlite3.connect(path)
 
 
@@ -84,7 +84,7 @@ def start_server(model=MODEL, binary=SERVER_BIN, port=8080, host="127.0.0.1", th
     take_lock()
     for p in (model, binary):
         if not os.path.exists(p):
-            sys.exit(f"missing {p}, see MANUAL_SETUP.md steps 13 and 16")
+            sys.exit(f"missing {p}")
     with socket.socket() as s:  # a second server can't bind, but /health would answer from the first one
         if s.connect_ex(("127.0.0.1", port)) == 0:
             sys.exit(f"port {port} is busy: another llama-server is running (a bench run or another app.py). "

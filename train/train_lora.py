@@ -1,13 +1,3 @@
-# [USTH] Fine-tune machine (usth), Ubuntu, CUDA GPU with >= 8 GB VRAM, Python venv with
-#       requirements.txt installed (MANUAL_SETUP.md step 2).
-#
-# Physical setup before running:
-#   - Copy from the host into the same paths under /storage/student14/nvbach/BeagleBrain on usth: data/train.jsonl, data/eval.jsonl,
-#     train/base/ (MANUAL_SETUP.md step 10).
-#   - After it finishes, copy train/merged/ back to the host.
-#
-# Plain bf16 LoRA (r=16, all linear layers). Loss only on the assistant answer, not on the
-# system prompt / retrieved articles / question. Output: train/merged/ (LoRA merged into the base).
 import json, os, sys
 
 import torch
@@ -23,7 +13,7 @@ END = "<|im_end|>\n"
 
 def load(path):
     if not os.path.exists(path):
-        sys.exit(f"missing {path}, see MANUAL_SETUP.md step 10")
+        sys.exit(f"missing {path}")
     return [json.loads(line) for line in open(path, encoding="utf-8")]
 
 
@@ -47,7 +37,7 @@ def collate(pad_id):
 
 def main():
     if not os.path.isdir(BASE):
-        sys.exit(f"missing {BASE}, see MANUAL_SETUP.md step 10")
+        sys.exit(f"missing {BASE}")
     tok = AutoTokenizer.from_pretrained(BASE, local_files_only=True)
     train = [encode(tok, r["messages"]) for r in load(os.path.join(ROOT, "data/train.jsonl"))]
     evals = [encode(tok, r["messages"]) for r in load(os.path.join(ROOT, "data/eval.jsonl"))]

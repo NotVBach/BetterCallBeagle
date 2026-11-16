@@ -44,8 +44,7 @@ class MemSampler(threading.Thread):
 
 def load_questions(n):
     if not os.path.exists(TESTSET):
-        sys.exit(f"missing {TESTSET}: run data/prepare.py (MANUAL_SETUP.md step 8), "
-                 "and on the BBB copy it over (step 16)")
+        sys.exit(f"missing {TESTSET}: run data/prepare.py ")
     rows = [json.loads(line) for line in open(TESTSET, encoding="utf-8") if line.strip()]
     return rows if n == "all" else rows[:int(n)]
 

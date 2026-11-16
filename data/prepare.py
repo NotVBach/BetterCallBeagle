@@ -1,14 +1,3 @@
-# [HOST] Ubuntu host, Python 3 venv with `datasets` and `transformers`.
-#
-# Physical setup: none. Needs MANUAL_SETUP.md steps 3 (QA data in data/raw/qa/), 5 (train/base/
-# for the tokenizer) and data/build_index.py run first (data/laws.db).
-#
-# Writes: data/train.jsonl, data/eval.jsonl (chat messages with retrieved articles),
-#         data/calib.txt (imatrix text), data/eval_text.txt (perplexity text),
-#         bench/testset.jsonl (held-out questions; review them, MANUAL_SETUP.md step 9).
-#
-# Usage: python data/prepare.py --q-field question --a-field answer [--gold-field ...] [--law-field ...] [--explode ...]
-# thangvip/vietnamese-legal-qa: --explode generated_qa_pairs --gold-field article_content --law-field doc_name
 import argparse, glob, json, os, random, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +19,7 @@ def load_rows(args):
         if files:
             rows += list(load_dataset(builder, data_files=files, split="train"))
     if not rows:
-        sys.exit(f"missing QA files in {RAW}, see MANUAL_SETUP.md step 3")
+        sys.exit(f"missing QA files in {RAW}")
     if args.explode:  # one row holds a list of QA dicts
         rows = [{**r, **item} for r in rows for item in (r.get(args.explode) or [])]
     missing = {args.q_field, args.a_field} - set(rows[0])
@@ -80,7 +69,7 @@ def main():
     from transformers import AutoTokenizer
     base = os.path.join(ROOT, "train/base")
     if not os.path.isdir(base):
-        sys.exit(f"missing {base}, see MANUAL_SETUP.md step 5")
+        sys.exit(f"missing {base}")
     tok = AutoTokenizer.from_pretrained(base, local_files_only=True)
     ntok = lambda s: len(tok(s, add_special_tokens=False)["input_ids"])  # noqa: E731
     sys_n = ntok(app.SYSTEM_PROMPT)
@@ -163,7 +152,6 @@ def main():
     assert not any(norm(s["messages"][1]["content"].split("Câu hỏi: ")[-1]) in test_keys for s in train), "test leak"
     assert all(s["messages"][0]["content"] == app.SYSTEM_PROMPT for s in train[:100])
     print(f"train {len(train)}, eval {len(evals)}, test {len(test)} (system prompt {sys_n} tokens)")
-    print("next: review bench/testset.jsonl (MANUAL_SETUP.md step 9)")
 
 
 if __name__ == "__main__":

@@ -1,13 +1,3 @@
-# [HOST] Ubuntu host, Python 3 venv with `transformers` (for the Qwen tokenizer).
-#
-# Physical setup: none. Needs MANUAL_SETUP.md steps 4 (law corpus in data/raw/laws/) and
-# 5 (Qwen2.5-0.5B-Instruct in train/base/, used only for its tokenizer).
-#
-# Builds data/laws.db: SQLite FTS5 table articles(law, article, text), one row per article
-# (long articles split by clause "Khoản" so each chunk is <= ~150 tokens).
-#
-# Input: every *.jsonl in data/raw/laws/ (data/extract_laws.py writes qa_articles.jsonl),
-#   one article per line: {"law": ..., "article": "5", "title": "Điều 5. ...", "text": "..."}
 import glob, json, os, random, re, sqlite3, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +12,7 @@ MAX_TOK = 150
 def load_articles():
     files = glob.glob(os.path.join(RAW, "*.jsonl"))
     if not files:
-        sys.exit(f"missing law corpus in {RAW}, see MANUAL_SETUP.md step 4")
+        sys.exit(f"missing law corpus in {RAW}")
     for f in files:
         for line in open(f, encoding="utf-8"):
             if line.strip():
@@ -63,7 +53,7 @@ def main():
     from transformers import AutoTokenizer
     base = os.path.join(ROOT, "train/base")
     if not os.path.isdir(base):
-        sys.exit(f"missing {base}, see MANUAL_SETUP.md step 5")
+        sys.exit(f"missing {base}")
     tok = AutoTokenizer.from_pretrained(base, local_files_only=True)
     ntok = lambda s: len(tok(s, add_special_tokens=False)["input_ids"])  # noqa: E731
 
