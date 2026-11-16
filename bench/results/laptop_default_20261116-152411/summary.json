@@ -1,0 +1,33 @@
+{
+ "machine": "laptop",
+ "arch": "x86_64",
+ "config": "default",
+ "tag": "20261116-152411",
+ "n": 20,
+ "threads": 12,
+ "model": "beagle-q4_k_m.gguf",
+ "metrics": {
+  "retrieval_ms_mean": 112.34,
+  "retrieval_ms_p50": 116.2,
+  "retrieval_ms_p90": 137.9,
+  "retrieval_ms_max": 151.2,
+  "ttft_s_mean": 1.531,
+  "ttft_s_p50": 1.51,
+  "ttft_s_p90": 1.687,
+  "ttft_s_max": 1.897,
+  "e2e_s_mean": 5.456,
+  "e2e_s_p50": 5.393,
+  "e2e_s_p90": 7.612,
+  "e2e_s_max": 9.702,
+  "prefill_tps_mean": 264.825,
+  "prefill_tps_p50": 265.33,
+  "prefill_tps_p90": 272.2,
+  "prefill_tps_max": 278.19,
+  "decode_tps_mean": 32.261,
+  "decode_tps_p50": 27.67,
+  "decode_tps_p90": 34.73,
+  "decode_tps_max": 76.69,
+  "peak_proc_rss_mb": 553.0,
+  "peak_machine_used_mb": 6338.1
+ }
+}
