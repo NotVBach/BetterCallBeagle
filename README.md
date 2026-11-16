@@ -38,14 +38,16 @@ huggingface-cli download --repo-type dataset thangvip/vietnamese-legal-qa --loca
 
 ### 4. Benchmark
 
-`bench/results/laptop_default_20261116-152411`: laptop chip (x86_64, 12 threads), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
+`bench/results/laptop_default_20261116-152411`: laptop chip (x86_64), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
 
-| Metric (max) | AM3358 | Intel Core i5-13420H |
+`bench/results/BeagleBone_default_20261115-143102`: BeagleBone (armv7l), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
+
+| Metric (max) | ARM Cortex-A8 | Intel Core i5-13420H |
 |---|---|---|
-| Retrieval (ms) | | 151.2 |
-| Time to first token (s) | | 1.90 |
-| Whole answer (s) | | 9.70 |
-| Prefill (tokens/s) | | 278.2 |
-| Generation (tokens/s) | | 76.7 |
-| llama-server memory (MB) | | 553.0 |
-| Whole machine memory (MB) | | 6338.1 |
+| Retrieval (ms) | 5504.5 | 151.2 |
+| Time to first token (s) | 1386.60 | 1.90 |
+| Whole answer (s) | 5846.74 | 9.70 |
+| Prefill (tokens/s) | 0.35 | 278.2 |
+| Generation (tokens/s) | 0.11 | 76.7 |
+| llama-server memory (MB) | 382.7 | 553.0 |
+| Whole machine memory (MB) | 185.7 | 6338.1 |

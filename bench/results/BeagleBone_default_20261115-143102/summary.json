@@ -1,0 +1,33 @@
+{
+ "machine": "BeagleBone",
+ "arch": "armv7l",
+ "config": "default",
+ "tag": "20261115-143102",
+ "n": 20,
+ "threads": 1,
+ "model": "beagle-q4_k_m.gguf",
+ "metrics": {
+  "retrieval_ms_mean": 4319.195,
+  "retrieval_ms_p50": 4417.0,
+  "retrieval_ms_p90": 4845.6,
+  "retrieval_ms_max": 5504.5,
+  "ttft_s_mean": 1115.624,
+  "ttft_s_p50": 1124.857,
+  "ttft_s_p90": 1227.66,
+  "ttft_s_max": 1386.595,
+  "e2e_s_mean": 3431.184,
+  "e2e_s_p50": 3473.368,
+  "e2e_s_p90": 4596.311,
+  "e2e_s_max": 5846.744,
+  "prefill_tps_mean": 0.337,
+  "prefill_tps_p50": 0.34,
+  "prefill_tps_p90": 0.35,
+  "prefill_tps_max": 0.35,
+  "decode_tps_mean": 0.054,
+  "decode_tps_p50": 0.05,
+  "decode_tps_p90": 0.07,
+  "decode_tps_max": 0.11,
+  "peak_proc_rss_mb": 382.7,
+  "peak_machine_used_mb": 185.7
+ }
+}
