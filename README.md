@@ -1,6 +1,6 @@
 ## Project: Better call Beagle
 
-1. Objective:
+### 1. Objective:
 Build an assistant that answers Vietnamese legal questions entirely on a BeagleBone Black Rev C using **llama.cpp**
 
 Target hardware:
@@ -12,11 +12,11 @@ Target hardware:
 - Storage: 4 GB eMMC
 - OS: Debian Linux
 
-2. Technical
+### 2. Technical
 - Model: Qwen2.5-0.5B-Instruct
 - LoRA fine-tuned, Q4_K_M GGUF (~400 MB) and SQLite FTS5 retrieval over law articles.
 
-3. Run from scratch
+### 3. Run from scratch
 - Requirements:
 ```bash
 sudo apt install build-essential cmake git python3-venv \
@@ -36,7 +36,7 @@ huggingface-cli download --repo-type dataset thangvip/vietnamese-legal-qa --loca
 
 - Run app: `python app.py`
 
-4. Benchmark
+### 4. Benchmark
 
 `bench/results/laptop_default_20261116-152411`: laptop chip (x86_64, 12 threads), `beagle-q4_k_m.gguf`, default config (RAG, speculative decoding and cache on), 20 test questions.
 
